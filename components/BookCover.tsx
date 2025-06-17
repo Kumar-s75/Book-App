@@ -14,17 +14,30 @@ interface Props{
      className?:string;
      variant?:BookCoverVariant;
      coverColor:string;
-     coverUrl:string;
+     coverImage:string;
 }
 
 const BookCover = ({
     className,
-    variant,
-    coverColor,
-    coverUrl
+    variant="regular",
+    coverColor="#012B48",
+    coverImage="https://placehold.co/400x600.png"
 }:Props) => {
   return (
-    <div>BookCover</div>
+    <div className={cn(inputs:'relative transition-all duration-300 ',
+        variantStyles[variant],
+        className,
+         
+    )}>
+        <BookCoverSvg coverColor={coverColor}/>
+        <div className="absolute z-10" style={{left:'12%',width:'87.5%',height:'88%'}}>
+                   <Image 
+                   src={coverImage} 
+                   alt="Book Cover"
+                   fill
+                   className="rounded-sm object-fill" /> 
+        </div>
+        </div>
   )
 }
 
