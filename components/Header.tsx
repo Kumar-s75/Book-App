@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className="my-10 flex justify-between items-center gap-5">
       <Link href="/" className="text-xl font-bold">
-        BookApp
+        <img src="/icons/logo.svg" alt="logo" width={40} height={40}/>
       </Link>
 
       <ul className="flex flex-row items-center gap-5">
