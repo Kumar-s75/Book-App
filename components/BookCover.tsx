@@ -3,26 +3,25 @@ import Image from "next/image";
 import clsx from "clsx";
 import BookCoverSvg from "./BookCoverSvg"; // Assuming this is your custom component
 
-type BookCoverVariant = "extraSmall" | "small" | "medium" | "regular" | "wide";
+type BookCoverVariant = "small" |  "default" | "wide";
 
 const variantStyles: Record<BookCoverVariant, string> = {
-  extraSmall: "book-cover_extra_small",
-  small: "book-cover_extra_small",
-  medium: "book-cover_extra_small",
-  regular: "book-cover_regular",
+
+  small: "book-cover_small",
+  default: "book-cover",
   wide: "book-cover_wide",
 };
 
 interface Props {
   className?: string;
   variant?: BookCoverVariant;
-  coverColor: string;
-  coverImage: string;
+  coverColor?: string;
+  coverImage?: string;
 }
 
 const BookCover = ({
   className,
-  variant = "regular",
+  variant = "default",
   coverColor = "#012B48",
   coverImage = "https://placehold.co/400x600.png",
 }: Props) => {

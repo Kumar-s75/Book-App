@@ -7,7 +7,7 @@ const Home=()=> {
   return (
    <>
    {/* <Button className="">Click me!</Button> */}
-   <BookOverview/>
+   <BookOverview book={bookData}/>
    <BookList/>
    </>
   );

@@ -15,17 +15,23 @@ interface Book {
   cover: string;
 }
 
-const BookOverview = ({
-  title,
-  author,
-  genre,
-  rating,
-  total_copies,
-  available_copies,
-  description,
-  color,
-  cover,
-}: Book) => {
+interface Props {
+  book: Book;
+}
+
+const BookOverview = ({ book }: Props) => {
+  const {
+    title,
+    author,
+    genre,
+    rating,
+    total_copies,
+    available_copies,
+    description,
+    color,
+    cover,
+  } = book;
+
   return (
     <section className="book-overview">
       <div className="flex flex-col flex-1 gap-5">
@@ -35,12 +41,10 @@ const BookOverview = ({
           <p>
             By <span className="font-semibold text-light-200">{author}</span>
           </p>
-
           <p>
             Category{" "}
             <span className="font-semibold text-light-200">{genre}</span>
           </p>
-
           <div className="flex flex-row gap-1">
             <Image src="/icons/star.svg" alt="star" width={22} height={22} />
             <p>{rating}</p>
