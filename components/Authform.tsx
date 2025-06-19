@@ -6,8 +6,8 @@ import {
   useForm,
   SubmitHandler,
   FieldValues,
-  UseFormReturn,
   DefaultValues,
+  Path,
 } from "react-hook-form";
 import { z, ZodType } from 'zod';
 
@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from 'next/link';
-import { FIELD_NAMES } from '@/constants';
+import { FIELD_NAMES, FIELD_TYPES } from '@/constants';
 import ImageUpload from './ImageUpload';
 
 interface Props<T extends FieldValues> {
@@ -47,7 +46,10 @@ const AuthForm = <T extends FieldValues>({
   });
 
   const handleSubmit: SubmitHandler<T> = async (data) => {
-    await onSubmit(data);
+    const result = await onSubmit(data);
+    if (!result.success) {
+      console.error(result.error);
+    }
   };
 
   return (
@@ -61,31 +63,33 @@ const AuthForm = <T extends FieldValues>({
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 w-full">
-          {Object.keys(defaultValues).map((field) => (
+          {Object.keys(defaultValues).map((fieldName) => (
             <FormField
-              key={field}
+              key={fieldName}
               control={form.control}
-              name={field as  Path<T>}
+              name={fieldName as Path<T>}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='capitalize'>{FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}</FormLabel>
+                  <FormLabel className="capitalize">
+                    {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
+                  </FormLabel>
                   <FormControl>
-                    {field.name==="universityCard" ?(
-                        <ImageUpload/>
-                    ):(
-                        <Input required type={
-                            {FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]}
-                        } {...field}
-                        />
+                    {field.name === "universityCard" ? (
+                      <ImageUpload />
+                    ) : (
+                      <Input
+                        required
+                        type={FIELD_TYPES[field.name as keyof typeof FIELD_TYPES] || "text"}
+                        {...field}
+                      />
                     )}
-                    <Input placeholder={field.name} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           ))}
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="form-btn">{isSignIn ?'Sign In' :'Sign Up' }</Button>
         </form>
       </Form>
 
