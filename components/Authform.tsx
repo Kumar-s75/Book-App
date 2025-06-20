@@ -75,7 +75,7 @@ const AuthForm = <T extends FieldValues>({
                   </FormLabel>
                   <FormControl>
                     {field.name === "universityCard" ? (
-                      <ImageUpload />
+                      <ImageUpload  onFileChange={field.onChange} />
                     ) : (
                       <Input
                         required
@@ -92,7 +92,7 @@ const AuthForm = <T extends FieldValues>({
           <Button type="submit" className="form-btn">{isSignIn ?'Sign In' :'Sign Up' }</Button>
         </form>
       </Form>
-
+ 
       <p className="text-center text-base font-medium text-white">
         {isSignIn ? "New to Bookwise?" : "Already have an account?"}{" "}
         <Link

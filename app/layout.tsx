@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner"
+
 
 import localFont from "next/font/local";
 
@@ -38,6 +40,7 @@ const RootLayout=({
         className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
       >
         {children}
+         <Toaster />
       </body>
     </html>
   );
