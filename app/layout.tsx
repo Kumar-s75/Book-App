@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/sonner"
 
 
 import localFont from "next/font/local";
-
+import {SessionProvider} from "next-auth/react";
 
 const ibmPlexSans = localFont({
 src:[
@@ -29,19 +29,25 @@ export const metadata: Metadata = {
   description: "Book-App is book borrowing university library management system ",
 };
 
-const RootLayout=({
+const RootLayout=async({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>)=> {
+
+  const session=await auth(); 
   return (
     <html lang="en">
+      <SessionProvider session={session}>
+
+      
       <body
         className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
       >
         {children}
          <Toaster />
       </body>
+      </SessionProvider>
     </html>
   );
 }

@@ -12,9 +12,11 @@ type="SIGN_IN"
 schema={signInSchema}
 defaultSchema={{
     email:"",
-    password:""
+    password:"",
 }}
-onSubmit={()=>{}}
+onSubmit={
+    signInWithCredentials
+}
 />
 
 }
