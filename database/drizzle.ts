@@ -1,8 +1,7 @@
 import { drizzle } from "drizzle-orm/neon-http";
 import { neon } from "@neondatabase/serverless";
-import  config  from "@/lib/config";
+import config from "@/lib/config"; // Make sure this exports `env.databaseUrl`
 
-// config({ path: ".env" }); // or .env.local
+const sql = neon(config.env.databaseUrl!); // Ensure URL is correct
+export const db = drizzle(sql); // ✅ Proper usage
 
-const sql = neon(config.env.databaseUrl);
-export const db = drizzle({ client: sql });
