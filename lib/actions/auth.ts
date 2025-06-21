@@ -2,10 +2,16 @@
 import {eq } from "drizzle-orm";
 import { db } from "@/database/drizzle";
 import {users} from "@/database/schema";
+import { headers } from "next/headers";
 
 
 export const signInWithCredentials=async(params:Pick <AuthCredentials,'email'|'password'>)=>{
        const {email,password}=params; 
+const ip=(await headers()).get('x-forwarded-for')||'127.0.0.1';
+
+const {success}=await ratelimit.limit(ip);
+if(!success) return redirect(url:"/too-fast");
+
        try{
 
 const result=await signIn(provider{'credentials',options:{
@@ -22,6 +28,12 @@ const result=await signIn(provider{'credentials',options:{
 
  export const signUp=async(params:AuthCredentials)=>{
    const {fullName,email,universityId,password,universityCard}=params;
+
+const ip=(await headers()).get('x-forwarded-for')||'127.0.0.1';
+
+const {success}=await ratelimit.limit(ip);
+if(!success) return redirect(url:"/too-fast");
+
 
    const existingUser=await db
     .select()
