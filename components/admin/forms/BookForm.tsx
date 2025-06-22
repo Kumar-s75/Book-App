@@ -220,7 +220,7 @@ const onSubmit=async(values:z.infer<typeof bookSchema>)=>{
                  Book Image
                   </FormLabel>
                   <FormControl>
-                    {/* {File upload} */}
+                   <FileUpload type="image" accept="image/*" placeholder="Upload a book cover" folder="books/covers" variant="light" onFileChange={field.onChange} value={field.value}  />
                      
                   </FormControl>
                   <FormMessage />
@@ -269,7 +269,7 @@ const onSubmit=async(values:z.infer<typeof bookSchema>)=>{
               render={({ field }) => (
                 <FormItem className='flex flex-col gap-1'>
                   <FormLabel className="text-base font-normal text-dark-500">
-               Book Trailer
+                                 <FileUpload type="video" accept="video/*" placeholder="Upload a book tariler" folder="books/videos" variant="light" onFileChange={field.onChange} value={field.value}  />
                   </FormLabel>
                   <FormControl>
                    <Textarea placeholder="Book Description" {...field} rows={10} className="book-form_input"/>
@@ -301,7 +301,7 @@ const onSubmit=async(values:z.infer<typeof bookSchema>)=>{
               )}
             /> 
 
-            <Button type="submit"  className='book-form_btn text-white'>Add Book to Library </Button>
+        <Button type="submit"  className='book-form_btn text-white'>Add Book to Library </Button>
         </form>
       </Form>
  
