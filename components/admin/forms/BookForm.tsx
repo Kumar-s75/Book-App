@@ -29,6 +29,7 @@ import ImageUpload from './ImageUpload';
 import { toast } from 'sonner';
 import { bookSchema } from '@/lib/validations';
 import { Textarea } from '@/components/ui/textarea';
+import ColorPicker from '../ColorPicker';
 
 interface Props extends Partial<Book> {
  type?:'create'|'update';
@@ -59,7 +60,7 @@ const BookForm = ({
   });
 
 const onSubmit=async(values:z.infer<typeof bookSchema>)=>{
-
+  console.log(values);
 }
 
 //   const handleSubmit: SubmitHandler<T> = async (data) => {
@@ -139,7 +140,7 @@ const onSubmit=async(values:z.infer<typeof bookSchema>)=>{
             />
 
             
-<FormField
+         <FormField
               control={form.control}
               name={"genre"}
               render={({ field }) => (
@@ -163,7 +164,7 @@ const onSubmit=async(values:z.infer<typeof bookSchema>)=>{
 
 
 
-<FormField
+            <FormField
               control={form.control}
               name={"rating"}
               render={({ field }) => (
@@ -237,7 +238,7 @@ const onSubmit=async(values:z.infer<typeof bookSchema>)=>{
                Primary Color
                   </FormLabel>
                   <FormControl>
-                    {/* {Color Picker} */}
+                    <ColorPicker onPickerChange={field.onChange} value={field.value} />
                      
                   </FormControl>
                   <FormMessage />

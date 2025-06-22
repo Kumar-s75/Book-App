@@ -36,17 +36,18 @@ interface Props{
   folder:string;
   variant:'dark'|'light';
    onFileChange:(filePath:string)=>void;
+   value?:string;
 }
 
 
 
 const FileUpload = ({
   type,accept,placeholder,folder,variant
-  onFileChange,
+  onFileChange,value
 }:Props)
  => {
   const ikUploadRef = useRef(initialValue:null);
-  const [file, setFile] = useState<{ filePath: string} | null >( initialState: null );
+  const [file, setFile] = useState<{ filePath: string} | null >( initialState:{filePath:String|null}  );
 
 const [progress,setProgress]=useState(initialState:0);
 
