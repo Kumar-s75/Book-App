@@ -1,18 +1,19 @@
 interface   Book{
 
-    id:number;
+    id:string;
     title:string;
     author:string;
     genre:string;
     rating:number;
-    total_copies:number;
-    available_copies:string;
+    totalCopies:number;
+    availableCopies:string;
     description:string;
     color:string;
-    cover:string;
-    video:string;
+    coverUrl:string;
+    videoUrl:string;
     summary:string;
-    isLoadedBook?:boolean;
+    createdAt:Date|null;
+    
      
 }
 

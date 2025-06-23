@@ -14,12 +14,15 @@ const BookList = ({
     containerClassName,
 
 }:Props) => {
+    if(books.length<2) return;
   return (
- <section className={containerClassname}>
+ <section className={containerClassName}>
 
 <h2 className='font-bebas-neue text-4xl  text-light-100'>
     {title} 
 </h2>
+
+{/* {books.length>2 && */}
 <ul className='book-list'>
     {
         books.map((book)=>(

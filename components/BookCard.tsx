@@ -6,15 +6,15 @@ const BookCard = ({
     id,
     title,
     genre,
-    color,
-    cover,
+    coverColor,
+    coverUrl,
     isLoanedBook=false
  }:Book) =>
   <li className={cn(inputs:isLoanedBook && "xs:w-52 w-full ")}>
 <Link href={`/books/${id}`} className={cn(isLoanedBook && "flex flex-col items-center")}>
 <BookCover 
-coverColor={color}
-coverImage={cover}
+coverColor={coverColor}
+coverImage={coverUrl}
 />
 <div className={cn(inputs:'mt-4',!isLoanedBook && "xs:max-w-40 max-w-28" )}>
     <p className='book-title'>{title}</p>
