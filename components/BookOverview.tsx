@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import BookCover from "./BookCover";
+import BorrowBook from "./BorrowBook";
 
 interface Book {
   title: string;
@@ -30,6 +31,8 @@ const BookOverview = ({ book }: Props) => {
     description,
     coverColor,
     coverUrl,
+    id,
+    userId,
   } = book;
 
   return (
@@ -62,10 +65,7 @@ const BookOverview = ({ book }: Props) => {
 
         <p className="book-description">{description}</p>
 
-        <Button className="book-overview_btn">
-          <Image src="/icons/book.svg" alt="book icon" width={20} height={20} />
-          <p className="font-bebas-neue text-xl text-dark-100">Borrow Book</p>
-        </Button>
+        <BorrowBook bookId={id} userId={userId}/>
       </div>
 
       <div className="relative flex flex-1 justify-center">
