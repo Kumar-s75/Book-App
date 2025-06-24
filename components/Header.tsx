@@ -17,7 +17,7 @@ const Header = ({session}:{session:Session}) => {
       </Link>
 
       <ul className="flex flex-row items-center gap-5">
-        <li>
+        {/* <li>
           <Link
             href="/library"
             className={clsx(
@@ -27,8 +27,18 @@ const Header = ({session}:{session:Session}) => {
           >
             Library
           </Link>
-        </li>
+        </li> */}
         <li>
+
+           <form action={async()=>{
+              'use server';
+          
+              await signOut();
+            }}
+            className='mb-10'
+            >
+              <Button className="">Logout</Button>
+            </form>
 <Link href='/my-profile'>
 <Avatar>
   {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
